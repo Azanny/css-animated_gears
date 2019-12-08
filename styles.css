@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css?family=Sulphur+Point&display=swap');
+
+body{
+	background:#eee;
+	font-family: 'Sulphur Point', sans-serif;
+	height:100vh;
+	width:100vw;
+	margin:0;
+	padding:100px;
+	box-sizing:border-box;
+}
+
+
+.gear{
+	position:relative;
+	width:100px;
+	height:100px;
+	background-color:transparent;
+	box-sizing:border-box;
+	border-radius:50%;
+	border:30px solid #333;	
+}
+
+.gear::before{
+	content:'';
+	width: 118px;
+	height: 118px;
+	top: -39px;
+	left: -39px;
+	position:absolute;
+	box-sizing:border-box;
+	border-radius:50%;
+	border:10px dashed #333;
+
+}
+
+.light{
+	position:absolute;
+	width:120px;
+	height:120px;
+	box-sizing:border-box;
+	border-radius:50%;
+	background-image:linear-gradient(to top left, transparent, rgba(255,255,255,.3),rgba(255,255,255,.8), rgba(255,255,255,.3),transparent);
+}
+
+.leftlight{
+	left:90px;
+	top:90px;
+	
+}
+
+.rightlight{
+	left:198px;
+	top:137px;
+}
+
+#rightgear{
+	position:absolute;
+	left:208px;
+	top:147px;
+	animation:3s linear 0s infinite rightspin paused
+}
+
+#rightgear::before{
+	transform:rotate(-21deg);
+	
+}
+
+#leftgear{
+	animation:3s linear 0s infinite leftspin paused
+	
+}
+
+@keyframes rightspin{
+	from{
+		transform:rotate(0)
+	}
+	to{
+		transform:rotate(-360deg)
+	}	
+}
+
+@keyframes leftspin{
+	from{
+		transform:rotate(0)
+	}
+	to{
+		transform:rotate(360deg)
+	}	
+}
+
+.running,.paused{
+	position:absolute;
+	top:160px;
+	left:470px;
+	display:none;
+	font-size:24px;
+}
+
+.running{
+	color:#67c781
+}
+
+.paused{
+	color:#eea48b
+}
+
+#check{
+	display:none;
+}
+
+#control{	
+	display:block;
+	width:40px;
+	height:40px;
+	border-radius:5px;
+	background:#999;
+	cursor:pointer;
+	position:absolute;
+	top:155px;
+	left:410px;
+	border:1px solid #222;
+}
+
+
+#control::before{
+	content:'\2713';
+	position:absolute;
+	top:-7px;
+	left:6px;
+	font-size:38px;
+	overflow:hidden;
+	width:0;
+	transition:width .3s ease
+	
+}
+
+#check:checked+label::before{
+	width:40px;
+}
+
+#check:checked~div{
+	animation-play-state:running;
+}
+
+
+#check:checked~.running{
+	display:block;
+}
+
+#check:not(:checked)~.paused{
+	display:block;
+}
